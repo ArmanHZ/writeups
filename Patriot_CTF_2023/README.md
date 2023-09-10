@@ -22,13 +22,13 @@ This CTF was very fun and had a lot of high quality challenges. It was a shame t
 
 All 5 flags are hidden in the webpage. Navigating to webpage and looking at the source, we get two flags.
 
-![[scavenger_hunt_1.png]]
+![scavenger_hunt_1.png](images/scavenger_hunt_1.png)
 
 The other two flags are in the `script1.js` and `script2.js`. `script1.js` writes the part of the flag to console, so alternatively you can look at your developer console. `script2.js`, sets the cookie. So, alternatively you can check you cookie and get the flag.
 
 Last flag is hidden better and requires you to know some web concepts. It is located in `robots.txt` file.
 
-![[scavenger_hunt_2.png]]
+![scavenger_hunt_2.png](images/scavenger_hunt_2.png)
 
 *Flag: `PCTF{Hunt3r5_4nD_g4tH3R5_e49e4a541}`*
 
@@ -47,11 +47,11 @@ cat Challenge.txt
 
 This is clearly binary, so we have to transfer it to something we can understand, such as hex or string. We can do this, using CyberChef. CyberChef does converts the `binary` to its `string` representation.
 
-![[multi_numeral_1.png]]
+![multi_numeral_1.png](images/multi_numeral_1.png)
 
 Looks like we got integer representation of characters now. We can again look for the correct recipe/function to do the conversion. But, at this point, I decided to use the `Magic` recipe of CyberChef.
 
-![[multi_numeral_2.png]]
+![multi_numeral_2.png](images/multi_numeral_1.png)
 
 And we got the flag. The steps necessary were `From_Decimal -> From_Hex -> From_Base64`
 
@@ -63,19 +63,19 @@ And we got the flag. The steps necessary were `From_Decimal -> From_Hex -> From_
 
 We are given a `png` file which looks like this:
 
-![[my_phone_1.png]]
+![my_phone_1.png](images/my_phone_1.png)
 
 At first, we tried to do the most used characters in the English language analysis on this, however, that seemed too much work for an easy labeled challenge.
 There were no metadata attached to the image, so we decided to do google reverse image search.
 
 After searching for a bit, we found out that this is from `Gravity Falls` and the "weird triangle man" in the description is `Bill Cipher`. So, we googled "bill cipher decryptor" and found out this: https://www.dcode.fr/gravity-falls-bill-cipher
 
-![[my_phone_2.png]]
+![my_phone_2.png](images/my_phone_2.png)
 
 We have: `FOURSIX. SEVENSIXEIGHT, -NINETWO. ONETWOFOUR` and in numbers: `46.768, -92.124`
 These look like coordinates and if we use Google Maps, we find the city that we are looking for:
 
-![[my_phone_3.png]]
+![my_phone_3.png](images/my_phone_3.png)
 
 *Flag: PCTF{duluth}*
 
@@ -103,7 +103,7 @@ Flag.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, 
 
 Looks like the magic bytes are as the should be. We have to look at the `hex` representation of the file. We can use `xxd Flag.jpg | vim`:
 
-![[unsupported_format_1.png]]
+![unsupported_format_1.png](images/unsupported_format_1.png)
 
 We notice something interested. Looks like two `jpg` files are stacked on top of each other in the same file. Next, we try to separate them to two different files.
 For this task, I used `GHex` hex editor.
@@ -111,7 +111,7 @@ To select correct parts of the file, we need to know that (some*) `jpg` files st
 
 As a result, we get two files. The first one is corrupt. However, the second one is not and we get the flag.
 
-![[unsupported_format_2.png]]
+![unsupported_format_2.png](images/unsupported_format_2.png)
 
 *Flag: PCTF{c0rrupt3d_b1t5_4r3_c00l}*
 
@@ -123,7 +123,7 @@ As a result, we get two files. The first one is corrupt. However, the second one
 
 We are given two very long text files. Seems like a part of a story book. Both files seem *almost* identical. The check this fact, we can either use `diff` or `git diff`. We want to see the word differences, so I decided to use `git diff`:
 
-![[twins_1.png]]
+![twins_1.png](images/twins_1.png)
 
 We see that some words are different. Some are missing a character or uses a different character. We copy the changed words and write down the missing or changed characters and we get the flag.
 
@@ -189,7 +189,7 @@ We are given a GitHub repository and we have to find the leaked password in the 
 
 The repo has 8 commits, so we check them out one by one. Most of the commits are not interesting, but this one has a picture associated with it: https://github.com/Th3Burn1nat0r/vuln/commit/52552b52ac8ad993d150ff83a8e12bfeee6e74e6
 
-![[bad_documentation_1.png]]
+![bad_documentation_1.png](images/bad_documentation_1.png)
 
 Looking at the picture, we see the `Authorization` tag using `Basic`. `Basic` does `base64` encoding on the `id:password` pair. So, if we decode it, we should see the plain password. The font used is bad and `1`s look like `l`s. Same with `0` and `O`. So, it takes a bit of trial and error to get the flag. To decode, you can either use `base64 -d` or CyberChef.
 
